@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('quizzes', function (Blueprint $table) {
-        $table->string('jurusan')->nullable();
+        Schema::create('leaderboards', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->integer('score');
+            $table->unsignedBigInteger('quiz_id')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -21,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('quizzes', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('leaderboards');
     }
 };

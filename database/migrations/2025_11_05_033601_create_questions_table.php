@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('quiz_id')->constrained('quizzes')->onDelete('cascade');
-            $table->string('question_text');
+            $table->unsignedBigInteger('quiz_id')->nullable();
+            $table->string('jurusan'); // ⬅️ kolom jurusan
+            $table->text('question_text');
             $table->string('option_a');
             $table->string('option_b');
             $table->string('option_c');
             $table->string('option_d');
-            $table->char('correct_answer', 1); // 👉 jawaban benar (A/B/C/D)
+            $table->string('correct_answer');
             $table->timestamps();
         });
     }
